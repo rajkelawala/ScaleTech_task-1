@@ -1,0 +1,53 @@
+{
+    "form": {
+      "title": "Personal Information Form",
+      "description": "Please fill out your personal details below.",
+      "groups": [
+        {
+          "title": "Contact Information",
+          "fields": [
+            {
+              "label": "Full Name",
+              "type": "text",
+              "name": "fullName",
+              "placeholder": "Enter your full name",
+              "required": true
+            },
+            {
+              "label": "Address",
+              "type": "textarea",
+              "name": "address",
+              "placeholder": "Enter your address",
+              "required": true
+            },
+            {
+              "label": "State",
+              "type": "dropdown",
+              "name": "state",
+              "options": ["Alabama", "California", "New York", "Texas", "Washington"],
+              "required": true
+            },
+            {
+              "label": "Phone Number",
+              "type": "text",
+              "name": "phoneNumber",
+              "placeholder": "Enter your phone number",
+              "required": true
+            },
+            {
+              "label": "Preferred Contact Method",
+              "type": "radio",
+              "name": "contactMethod",
+              "options": [
+                { "label": "Email", "value": "email" },
+                { "label": "Phone", "value": "phone" },
+                { "label": "SMS", "value": "sms" }
+              ],
+              "required": true
+            }
+          ]
+        }
+      ]
+    }
+  }
+  
