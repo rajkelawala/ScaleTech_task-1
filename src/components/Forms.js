@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { BiEdit, BiEditAlt } from "react-icons/bi";
 import { FaUserGraduate, FaCalendarAlt, FaTools, FaStar } from 'react-icons/fa'; // Importing icons
 
 const Forms = ({ jsonData }) => {
@@ -39,20 +40,10 @@ const Forms = ({ jsonData }) => {
             required={field.required}
             value={formData[field.name] || ""}
             onChange={handleChange}
-            className="border p-2 w-full"
+            className=" p-2 w-full shadow-md"
           />
         );
-      case "textarea":
-        return (
-          <textarea
-            name={field.name}
-            placeholder={field.placeholder}
-            required={field.required}
-            value={formData[field.name] || ""}
-            onChange={handleChange}
-            className="border p-2 w-full"
-          />
-        );
+      
       case "dropdown":
         return (
           <select
@@ -60,7 +51,7 @@ const Forms = ({ jsonData }) => {
             required={field.required}
             value={formData[field.name] || ""}
             onChange={handleChange}
-            className="border p-2 w-full"
+            className=" p-2 w-full shadow-md"
           >
             <option value="">Select an option</option>
             {field.options.map((option) => (
@@ -117,7 +108,7 @@ const Forms = ({ jsonData }) => {
   };
 
   return (
-    <div className="p-6 w-3/5">
+    <div className="pl-6 w-3/5">
       <div className="grid grid-cols-4 gap-x-8 mb-4"> {/* Adjusted gap-x-8 for more explicit horizontal spacing */}
         <div className="flex items-center justify-center">
           <FaUserGraduate className="mr-2" />
@@ -143,12 +134,12 @@ const Forms = ({ jsonData }) => {
       <div className="flex items-center mb-4">
         <div className="relative">
           <img
-            className="w-20 h-20 rounded-full"
+            className="w-12 h-12 rounded-full"
             src="https://via.placeholder.com/150"
             alt="Profile"
           />
-          <button className="absolute bottom-0 right-0 bg-blue-500 text-white rounded-full p-1 text-xs">
-            Edit
+          <button className="absolute bottom-0 right-0 p-1 bg-black text-white rounded">
+            <BiEditAlt className="w-4 h-4" />
           </button>
         </div>
       </div>
@@ -156,9 +147,10 @@ const Forms = ({ jsonData }) => {
       <form onSubmit={handleSubmit}>
         <div className="grid grid-cols-2 gap-6 mb-4">
           <div>
-            <label className="block font-medium mb-1">Address</label>
+            <label className="block font-medium mb-1 ">Address</label>
             {renderField({
-              type: 'textarea',
+              type: 'text',
+              classname: 'shadow-md',
               name: 'address',
               placeholder: 'Enter your address',
               required: true
@@ -184,8 +176,8 @@ const Forms = ({ jsonData }) => {
             required: true
           })}
         </div>
-
-        <div className="mb-4">
+        <div className="grid grid-cols-2 gap-6 mb-4">
+        <div className="">
           <label className="block font-medium mb-1">Preferred Contact Method</label>
           {renderField({
             type: 'dropdown',
@@ -195,7 +187,7 @@ const Forms = ({ jsonData }) => {
           })}
         </div>
 
-        <div className="mb-4">
+        <div className="">
           <label className="block font-medium mb-1">Current Job Title</label>
           {renderField({
             type: 'text',
@@ -203,7 +195,7 @@ const Forms = ({ jsonData }) => {
             placeholder: 'Enter your current job title'
           })}
         </div>
-
+        </div>
         <div className="grid grid-cols-2 gap-6 mb-4">
           <div>
             <label className="block font-medium mb-1">Employment Status</label>

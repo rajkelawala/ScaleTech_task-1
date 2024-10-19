@@ -3,7 +3,7 @@ import { FaBell, FaChevronDown } from 'react-icons/fa'; // Importing icons
 
 const Navbar = () => {
   return (
-    <nav className="bg-white shadow-md p-4 flex justify-between items-center w-full">
+    <nav className="bg-white pt-4 pl-4 flex justify-between items-center w-full pr-4">
       <div className="text-xl font-bold">Personal</div>
       
       <div className="flex items-center">
