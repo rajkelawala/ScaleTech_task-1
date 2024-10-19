@@ -5,27 +5,6 @@ import { FaUserGraduate, FaCalendarAlt, FaTools, FaStar } from 'react-icons/fa';
 const Forms = ({ jsonData }) => {
   const [formData, setFormData] = useState({});
 
-  // Load saved data from localStorage (if any)
-  useEffect(() => {
-    const savedData = JSON.parse(localStorage.getItem("formData"));
-    if (savedData) {
-      setFormData(savedData);
-    }
-  }, []);
-
-  // Update formData dynamically based on user input
-  const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
-    const val = type === "checkbox" ? checked : value;
-    setFormData({ ...formData, [name]: val });
-  };
-
-  // Save form data to localStorage on form submission
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    localStorage.setItem("formData", JSON.stringify(formData));
-    alert("Form data saved!");
-  };
 
   // Render form fields based on the JSON structure
   const renderField = (field) => {
@@ -39,7 +18,6 @@ const Forms = ({ jsonData }) => {
             placeholder={field.placeholder}
             required={field.required}
             value={formData[field.name] || ""}
-            onChange={handleChange}
             className=" p-2 w-full shadow-md"
           />
         );
@@ -50,7 +28,6 @@ const Forms = ({ jsonData }) => {
               placeholder={field.placeholder}
               required={field.required}
               value={formData[field.name] || ""}
-              onChange={handleChange}
               className=" p-2 w-full shadow-md"
             />
           );
@@ -60,7 +37,6 @@ const Forms = ({ jsonData }) => {
             name={field.name}
             required={field.required}
             value={formData[field.name] || ""}
-            onChange={handleChange}
             className=" p-2 w-full shadow-md"
           >
             <option value="">Select an option</option>
@@ -79,7 +55,6 @@ const Forms = ({ jsonData }) => {
               name={field.name}
               value={option.value}
               checked={formData[field.name] === option.value}
-              onChange={handleChange}
               className="mr-2"
             />
             {option.label}
@@ -93,7 +68,6 @@ const Forms = ({ jsonData }) => {
               name={field.name}
               value={option.value}
               checked={formData[field.name] || false}
-              onChange={handleChange}
               className="mr-2"
             />
             {option.label}
@@ -108,7 +82,6 @@ const Forms = ({ jsonData }) => {
             max={field.max}
             step={field.step}
             value={formData[field.name] || field.min}
-            onChange={handleChange}
             className="w-full"
           />
         );
@@ -141,7 +114,7 @@ const Forms = ({ jsonData }) => {
 
       <hr className="mb-4" />
 
-      <div className="flex items-center mb-4">
+      <div className="flex  mb-4">
         <div className="relative">
           <img
             className="w-12 h-12 rounded-full"
@@ -154,7 +127,7 @@ const Forms = ({ jsonData }) => {
         </div>
       </div>
 
-      <form onSubmit={handleSubmit}>
+      <form>
         <div className="grid grid-cols-2 gap-6 mb-4">
           <div>
             <label className="block font-medium mb-1 ">Address</label>
@@ -187,24 +160,24 @@ const Forms = ({ jsonData }) => {
           })}
         </div>
         <div className="grid grid-cols-2 gap-6 mb-4">
-        <div className="">
-          <label className="block font-medium mb-1">Preferred Contact Method</label>
-          {renderField({
-            type: 'dropdown',
-            name: 'preferredContact',
-            required: true,
-            options: ["Email", "Phone", "SMS"]
-          })}
-        </div>
+          <div className="">
+            <label className="block font-medium mb-1">Preferred Contact Method</label>
+            {renderField({
+              type: 'dropdown',
+              name: 'preferredContact',
+              required: true,
+              options: ["Email", "Phone", "SMS"]
+            })}
+          </div>
 
-        <div className="">
-          <label className="block font-medium mb-1">Current Job Title</label>
-          {renderField({
-            type: 'text',
-            name: 'currentJobTitle',
-            placeholder: 'Enter your current job title'
-          })}
-        </div>
+          <div className="">
+            <label className="block font-medium mb-1">Current Job Title</label>
+            {renderField({
+              type: 'text',
+              name: 'currentJobTitle',
+              placeholder: 'Enter your current job title'
+            })}
+          </div>
         </div>
         <div className="grid grid-cols-2 gap-6 mb-4">
           <div>
