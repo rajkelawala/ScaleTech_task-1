@@ -43,7 +43,17 @@ const Forms = ({ jsonData }) => {
             className=" p-2 w-full shadow-md"
           />
         );
-      
+        case "textarea":
+          return (
+            <textarea
+              name={field.name}
+              placeholder={field.placeholder}
+              required={field.required}
+              value={formData[field.name] || ""}
+              onChange={handleChange}
+              className=" p-2 w-full shadow-md"
+            />
+          );
       case "dropdown":
         return (
           <select
@@ -149,7 +159,7 @@ const Forms = ({ jsonData }) => {
           <div>
             <label className="block font-medium mb-1 ">Address</label>
             {renderField({
-              type: 'text',
+              type: 'textarea',
               classname: 'shadow-md',
               name: 'address',
               placeholder: 'Enter your address',
